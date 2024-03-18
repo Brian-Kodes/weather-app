@@ -1,0 +1,395 @@
+/* Global CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-palette: black; 
+  font-family: "Kdam Thmor", sans-serif;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Define font face */
+@font-face {
+  font-family: "Kdam Thmor", sans-serif;
+  font-style: normal;
+  src: url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
+}
+
+/* App container */
+.weather-app {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 70vh;
+  border-radius: 5%;
+  border-style: solid;
+  background-image: url("./assets/morning.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* App container */
+.app-container {
+  max-width: 60%;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Main heading */
+.main-heading {
+  font-size: 1.7em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Forecast heading */
+.forecast {
+  font-size: 1.4em;
+  color: #666;
+  margin-top: -5%;
+  margin-bottom: -3%;
+}
+
+/* Search container */
+.search-container {
+  position: relative;
+  margin-top: 5%;
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* Cloud icon */
+.cloud-icon {
+  font-size: 1.5em;
+  color: rgba(255, 253, 107, 0.981);
+  position: absolute;
+  top: calc(50% - 0.75em);
+  left: 50%;
+  transform: translateX(-50%);
+  animation: moveCloud 2s infinite alternate;
+}
+
+/* Keyframe animation for cloud icon */
+@keyframes moveCloud {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Back button */
+.back-btn {
+  position: absolute;
+  top: 35px;
+  left: 20px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.back-btn:hover {
+  color: #61dafb;
+}
+
+/* Search bar */
+.search-bar {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Responsive styles for forecast card */
+@media (max-width: 768px) {
+  .forecast-card {
+    font-size: 12px;
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .forecast-card {
+    font-size: 10px;
+    min-width: 100px;
+  }
+}
+
+/* App header styles */
+.App-header {
+  background-color: #4c5465;
+  background-position: 50% 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+
+/* App link styles */
+.App-link {
+  color: #61dafb;
+}
+
+/* Keyframe animation for spinning logo */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Forecast card styles */
+.forecast-card {
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  padding: 1.5em;
+  margin: 1em;
+  cursor: pointer;
+  text-align: center;
+  width: 90%; 
+  max-width: 300px; 
+  font-size: 1em;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.forecast-card:hover,
+.forecast-card:focus {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-card.expanded {
+  transform: scale(1.2);
+  z-index: 1;
+  position: relative;
+}
+
+.forecast-card.hovered:not(.expanded),
+.forecast-card:not(.hovered):not(.expanded) {
+  flex-basis: calc(25% - 40px);
+}
+
+/* Responsive styles for forecast card */
+@media (max-width: 768px) {
+  .forecast-card {
+    font-size: 0.8em; 
+    width: 100%;
+    max-width: none; 
+  }
+}
+
+@media (max-width: 480px) {
+  .forecast-card {
+    margin: 0.5em;
+  }
+}
+
+/* Forecast page container */
+.forecast-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vh;
+}
+
+/* Forecast container */
+.forecast-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70vh;
+  height: 80vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+  background-image: url("./assets/clouds.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 5%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Forecast Title */
+.week-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate (-50%, -50%);
+}
+
+/* Back button */
+.top-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+/* Scrollbar styles */
+.forecast-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.forecast-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.forecast-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.subtext {
+  font-size: 1.2em;
+  color: #000000;
+  font-style: italic;
+}
+
+#day-month {
+  font-size: 1.5em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
+
+.suggestions-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 6%;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.suggestions-list li {
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: black;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Forecast header styles */
+.forecast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.navigate-btn {
+  margin-left: 2.1%;
+}
+
+.navigate-btn:hover {
+  color: #61dafb;
+}
+
+.previous-week-btn,
+.next-week-btn {
+  font-size: 1.5em;
+  color: #333;
+  cursor: pointer;
+}
+
+.previous-week-btn:hover,
+.next-week-btn:hover {
+  color: #61dafb;
+}
+
+.back-btn:hover {
+  color:#61dafb;
+}
+
+#week-title {
+  font-size: 1.3em;
+  white-space: nowrap;
+  text-align: center;
+  font-style: italic;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Forecast content styles */
+.forecast-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Forecast cards grid */
+.forecast-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  grid-gap: 20px;
+  margin-top: 20px;
+}
+
+.sunday-card {
+  align-self: flex-end;
+  justify-self: center;
+  grid-column: span 2;
+}
