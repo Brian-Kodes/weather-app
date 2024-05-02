@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faTemperatureHigh, faTemperatureLow, faCloudRain, faCloudSun, faCloudSunRain, faCloudShowersHeavy, faSun} from '@fortawesome/free-solid-svg-icons';
+import DOMPurify from 'dompurify';
 
 const ForecastPage = () => {
   const location = useLocation();
@@ -24,7 +25,7 @@ const ForecastPage = () => {
   const reorderForecastData = (data) => {
     const weeks = [];
     const firstDay = new Date(data[0]);
-    let daysToMonday = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Calculate days to Monday
+    let daysToMonday = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; 
   
     const startDate = new Date(firstDay);
     startDate.setDate(startDate.getDate() - daysToMonday);
@@ -115,7 +116,7 @@ const ForecastPage = () => {
           onMouseLeave={handleCardMouseLeave}
           onClick={() => handleCardClick(dataIndex)}
         >
-          <h3 id='day-month'>{dayMonth}</h3>
+          <h3 id='day-month'>{DOMPurify.sanitize(dayMonth)}</h3>
           {isHovered && !isExpanded && (
             <p>
               <span className="subtext">{formattedTime}</span> <br />

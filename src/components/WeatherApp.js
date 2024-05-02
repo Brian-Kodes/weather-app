@@ -14,11 +14,20 @@ const WeatherApp = () => {
     setLoading(true);
     setError(null);
   
+    if (!location.trim()) {
+      setError('Please enter a location.');
+      setLoading(false);
+      return;
+    }
+
     try {
+      const encodedLocation = encodeURIComponent(location);
+      
       const response = await fetch(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(location)}&count=1&language=en&format=json`
+        `https://geocoding-api.open-meteo.com/v1/search?name=${encodedLocation}&count=1&language=en&format=json`
       );
       const data = await response.json();
+      
       if (data && data.results && data.results.length > 0) {
         const { latitude, longitude, timezone } = data.results[0];
         const forecastResponse = await fetch(
